@@ -227,5 +227,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    'upload_image_dir'     =>  './image/upload/',
+    'APP_NAME' => '鸿风交易城',
 ];

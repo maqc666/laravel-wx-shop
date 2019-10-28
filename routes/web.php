@@ -12,15 +12,20 @@
 */
 
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => 'index'], function () {
-    Route::get('login', 'Admin\IndexController@toLogin');
-    Route::get('exit', 'Admin\IndexController@toExit');
-    Route::post('login', 'Admin\IndexController@login');
-
-    Route::get('/', 'Admin\IndexController@toIndex');
 
 
-});
+Route::get('/index/login','admin\LoginController@getIndex');
+Route::post('/index/postLogin','admin\LoginController@postLogin');
+Route::get('index/user/index','admin\UserController@getIndex');
+
+Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'login'],function (){
+    Route::get('/','AdminController@index');});
+Route::get('index/out-login','admin\LoginController@getOutLogin');
+Route::post('index/user/update','admin\UserController@update');
+Route::resource('edit','admin\UserController');
+Route::get('index/user/delete/{id}','admin\UserController@getDelete');

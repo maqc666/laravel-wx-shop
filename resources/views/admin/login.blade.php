@@ -1,71 +1,94 @@
-@extends('admin.master')
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
 
-@section('content')
-    <link href="{{URL::asset('css/H-ui.login.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Viewport Metatag -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <div class=""></div>
-    <div class="loginWraper">
-        <div id="loginform" class="loginBox">
-            <form class="form form-horizontal" action="" method="post">
-                <div class="row cl">
-                    <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-                    <div class="formControls col-8">
-                        <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
+    <!-- Required Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/back/bootstrap/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/back/css/fonts/ptsans/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/back/css/fonts/icomoon/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/back/css/login.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/back/css/mws-theme.css" media="screen">
+
+    <title>用户登录</title>
+
+</head>
+
+<body>
+
+<div id="mws-login-wrapper">
+    @if(session('error'))
+        <div class="mws-form-message error">
+            提示信息
+            <ul>
+                <li>{{ session('error') }}</li>
+            </ul>
+        </div>
+    @endif
+
+    <div id="mws-login">
+        <h1>登陆</h1>
+        <div class="mws-login-lock"><i class="icon-lock"></i></div>
+        <div id="mws-login-form">
+            <form class="mws-form" action="/index/postLogin" method="post">
+                <div class="mws-form-row">
+                    <div class="mws-form-item">
+                        <input type="text" name="username" class="mws-login-username required" placeholder="用户名">
                     </div>
                 </div>
-                <div class="row cl">
-                    <label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-                    <div class="formControls col-8">
-                        <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
+                <div class="mws-form-row">
+                    <div class="mws-form-item">
+                        <input type="password" name="password" class="mws-login-password required" placeholder="密码">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="formControls col-8 col-offset-3">
-                        <input onclick="onLogin();" name="" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-                        <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-                    </div>
+
+                <div class="mws-form-row">
+                    {{csrf_field()}}
+                    <input type="submit" value="进入后台" class="btn btn-success mws-login-button">
                 </div>
             </form>
         </div>
     </div>
-    <div class="footer">基于Laravel的微商城后台管理系统</div>
-@endsection
+</div>
 
-@section('my-js')
-    <script type="text/javascript">
-        function onLogin() {
-            var username = $('input[name=username]').val();
-            var password = $('input[name=password]').val();
-            $.ajax({
-                type: 'post', // 提交方式 get/post
-                url: '{{url('Admin')}}', // 需要提交的 url
-                dataType: 'json',
-                data: {
-                    username: username,
-                    password: password,
-                    _token: "{{csrf_token()}}"
-                },
-                success: function(data) {
-                    if(data == null) {
-                        layer.msg('服务端错误', {icon:2, time:2000});
-                        return;
-                    }
-                    if(data.status != 0) {
-                        layer.msg(data.message, {icon:2, time:2000});
-                        return;
-                    }
-                    location.href = '{{url('/index')}}';
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr);
-                    console.log(status);
-                    console.log(error);
-                    layer.msg('ajax error', {icon:2, time:2000});
-                },
-                beforeSend: function(xhr){
-                    layer.load(0, {shade: false});
-                }
-            });
-        }
-    </script>
-@endsection
+<script src="/back/js/libs/jquery-1.8.3.min.js"></script>
+<script src="/back/js/libs/jquery.mousewheel.min.js"></script>
+<script src="/back/js/libs/jquery.placeholder.min.js"></script>
+<script src="/back/custom-plugins/fileinput.js"></script>
+
+<!-- jQuery-UI Dependent Scripts -->
+<script src="/back/jui/js/jquery-ui-1.9.2.min.js"></script>
+<script src="/back/jui/jquery-ui.custom.min.js"></script>
+<script src="/back/jui/js/jquery.ui.touch-punch.js"></script>
+
+<!-- Plugin Scripts -->
+<script src="/back/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/back/plugins/colorpicker/colorpicker-min.js"></script>
+
+<!-- Core Script -->
+<script src="/back/bootstrap/js/bootstrap.min.js"></script>
+<script src="/back/js/core/mws.js"></script>
+
+<!-- Themer Script (Remove if not needed) -->
+<script src="/back/js/core/themer.js"></script>
+
+<!-- Demo Scripts (remove if not needed) -->
+<script src="/back/js/demo/demo.table.js"></script>
+
+<!-- jQuery-UI Dependent Scripts  -->
+<script src="/back/jui/js/jquery-ui-effects.min.js"></script>
+
+<!-- Plugin Scripts -->
+<script src="/back/plugins/validate/jquery.validate-min.js"></script>
+
+<!-- Login Script -->
+<script src="/back/js/core/login.js"></script>
+
+</body>
+</html>
