@@ -38,7 +38,7 @@
             var password = $('input[name=password]').val();
             $.ajax({
                 type: 'post', // 提交方式 get/post
-                url: '{{url('/admin/service/login')}}', // 需要提交的 url
+                url: '{{url('Admin')}}', // 需要提交的 url
                 dataType: 'json',
                 data: {
                     username: username,
@@ -54,7 +54,7 @@
                         layer.msg(data.message, {icon:2, time:2000});
                         return;
                     }
-                    location.href = '{{url('/admin/index')}}';
+                    location.href = '{{url('/index')}}';
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr);

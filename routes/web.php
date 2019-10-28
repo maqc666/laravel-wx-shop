@@ -11,13 +11,16 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix' => 'index'], function () {
+    Route::get('login', 'Admin\IndexController@toLogin');
+    Route::get('exit', 'Admin\IndexController@toExit');
+    Route::post('login', 'Admin\IndexController@login');
 
-Route::get('in','Mycahche@index')->name('in');
+    Route::get('/', 'Admin\IndexController@toIndex');
 
-Route::post('up','Mycahche@up')->name('up');
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+});

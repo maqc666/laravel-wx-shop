@@ -34,12 +34,12 @@
 <script type="text/javascript" src="{{URL::asset('/admin/js/jquery.form.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/js/uploadFile.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/lib/layer/2.1/layer.js')}}"></script>
-<script type="text/javascript" src="{{URL::asset('/admin/js/H-ui.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('Admin')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/js/H-ui.admin.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/lib/Validform/5.3.2/Validform.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/lib/ueditor/1.4.3/ueditor.config.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('/admin/lib/ueditor/1.4.3/ueditor.all.min.js')}}"> </script>
-<script type="text/javascript" src="{{URL::asset('/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('Admin')}}"></script>
 @yield('my-js')
 </body>
 </html>
