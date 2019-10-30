@@ -18,7 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//前端--------------------------------
 
+Route::get('home/login','home\LoginController@getIndex');
+Route::get('login/captcha','home\LoginController@getCaptcha');
+
+
+//admin端-----------------------------
 Route::get('/index/login','admin\LoginController@getIndex');
 Route::post('/index/postLogin','admin\LoginController@postLogin');
 Route::get('index/user/index','admin\UserController@getIndex');
